@@ -56,9 +56,10 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
         ensureNotEmpty();
         E element = this.head.element;
         if (this.size == 1) {
-            this.head = null;
+            this.head =this.tail = null;
         } else {
             Node<E> newHead = this.head.next;
+            newHead.previous = null;
             this.head.next = null;
             this.head = newHead;
         }
@@ -79,14 +80,9 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
             return removeFirst();
         }
 
-        Node<E> current = this.head;
-        Node<E> prev = this.head;
-        while (current.next != null) {
-            prev = current;
-            current = current.next;
-        }
-        E element =  current.element;
-        prev.next = null;
+        E element = this.tail.element;
+        this.tail.previous.next = null;
+        this.tail = this.tail.previous;
         this.size--;
 
         return element;
@@ -100,11 +96,9 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
 
     @Override
     public E getLast() {
-        Node<E> current = this.head;
-        while (current.next != null) {
-            current = current.next;
-        }
-        return current.element;
+        ensureNotEmpty();
+        return this.tail.element;
+
     }
 
     @Override
