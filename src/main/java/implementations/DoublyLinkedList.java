@@ -41,7 +41,7 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
     public void addLast(E element) {
         Node<E> newNode = new Node<>(element);
         if (this.head == null) {
-            this.head = newNode;
+//            this.head = newNode;
         } else {
             Node<E> current = this.head;
             while (current.next != null) {
