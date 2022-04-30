@@ -75,7 +75,7 @@ public class ArrayDeque<E> implements Deque<E> {
         } else if(index == this.size) {
             this.addLast(element);
         } else {
-            if(this.tail == this.elements.size-1 ) {
+            if(this.tail == this.size-1 ) {
                 this.grow();
             }
             this.tail++;
